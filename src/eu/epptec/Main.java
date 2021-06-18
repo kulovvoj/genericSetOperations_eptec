@@ -1,9 +1,10 @@
 package eu.epptec;
 
-import eu.epptec.genericSetOperations.GenericSetOperations;
 import eu.epptec.genericSetOperations.Person;
 
 import java.util.*;
+
+import static eu.epptec.genericSetOperations.GenericSetOperations.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -33,12 +34,14 @@ public class Main {
 
         Set<Person> people5 = new HashSet<>();
 
-        System.out.println(GenericSetOperations.union(people1, people2));
-        System.out.println(GenericSetOperations.difference(people1, people2));
-        System.out.println(GenericSetOperations.intersection(people1, people2));
-        System.out.println(GenericSetOperations.symmetricDifference(people1, people2));
-        System.out.println(GenericSetOperations.symmetricDifference(people3, people4));
-        System.out.println(GenericSetOperations.symmetricDifference(people1, people5));
-        System.out.println(GenericSetOperations.symmetricDifference(people5, people1));
+        System.out.println(union(people1, people2));
+        System.out.println(difference(people1, people2));
+        System.out.println(intersection(people1, people2));
+        System.out.println(symmetricDifference(people1, people2));
+        System.out.println(symmetricDifference(people3, people4));
+        System.out.println(symmetricDifference(people1, people5));
+        System.out.println(symmetricDifference(people5, people1));
+        System.out.println(symmetricDifference(people1, people2).getClass().toString());
+        System.out.println(symmetricDifference(people4, people3).getClass().toString());
     }
 }

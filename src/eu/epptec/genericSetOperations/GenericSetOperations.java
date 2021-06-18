@@ -7,12 +7,11 @@ import java.util.Set;
 
 public class GenericSetOperations {
     // Convert class of the collection to specified class
+    // Used for casting the HashSet with set operation output back to the original collection class
     private static <T> Collection<T> convertClass (Collection<T> collection, Class<? extends Collection> collectionClass) {
         Collection<T> output;
         try {
             output = collectionClass.getDeclaredConstructor().newInstance();
-            // Does 3 operations, each taking O(m + n) time
-            // - O(m + n)
             output.addAll(collection);
         } catch (InstantiationException | NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
             output = null;
@@ -79,6 +78,7 @@ public class GenericSetOperations {
         // Does 3 operations, each taking O(m + n) time
         // - O(m + n)
         Collection<T> output = difference(union(collection1, collection2), intersection(collection1, collection2));
+
         output = convertClass(output, collection1.getClass());
 
         return output;
