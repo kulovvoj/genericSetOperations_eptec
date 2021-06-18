@@ -43,5 +43,8 @@ public class Main {
         System.out.println(symmetricDifference(people5, people1));
         System.out.println(symmetricDifference(people1, people2).getClass().toString());
         System.out.println(symmetricDifference(people4, people3).getClass().toString());
+        System.out.println(symmetricDifference(null, people2));
+        System.out.println(symmetricDifference(people1, null));
+        System.out.println(symmetricDifference(null, null));
     }
 }

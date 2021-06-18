@@ -1,14 +1,13 @@
 package eu.epptec.genericSetOperations;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public class GenericSetOperations {
     // Convert class of the collection to specified class
     // Used for casting the HashSet with set operation output back to the original collection class
     private static <T> Collection<T> convertClass (Collection<T> collection, Class<? extends Collection> collectionClass) {
+
         Collection<T> output;
         try {
             output = collectionClass.getDeclaredConstructor().newInstance();
@@ -28,6 +27,10 @@ public class GenericSetOperations {
     //   because if we, for example, had 2 sorted linked lists, we could do this in O(n + m) time without
     //   the creation of the hash set and casting it back in the first collection.
     public static <T> Collection<T> union (Collection<T> collection1, Collection<T> collection2) {
+        // Null protection
+        collection1 = Optional.ofNullable(collection1).orElse(new LinkedList<>());
+        collection2 = Optional.ofNullable(collection2).orElse(new LinkedList<>());
+
         // Creation of HashSet
         // - O(n)
         Set<T> elemSet = new HashSet<>(collection1);
@@ -42,6 +45,10 @@ public class GenericSetOperations {
 
     // Takes O(n + m) time
     public static <T> Collection<T> difference (Collection<T> collection1, Collection<T> collection2) {
+        // Null protection
+        collection1 = Optional.ofNullable(collection1).orElse(new LinkedList<>());
+        collection2 = Optional.ofNullable(collection2).orElse(new LinkedList<>());
+
         // Creation of HashSet should take
         // - O(n)
         Set<T> elemSet = new HashSet<>(collection1);
@@ -56,6 +63,10 @@ public class GenericSetOperations {
 
     // Takes O(n + m) time
     public static <T> Collection<T> intersection (Collection<T> collection1, Collection<T> collection2) {
+        // Null protection
+        collection1 = Optional.ofNullable(collection1).orElse(new LinkedList<>());
+        collection2 = Optional.ofNullable(collection2).orElse(new LinkedList<>());
+
         // Creation of HashSet should take
         // - O(n)
         Set<T> elemSet = new HashSet<>(collection1);
@@ -75,6 +86,10 @@ public class GenericSetOperations {
 
     // Again we could save some time by lowering the constant of m + n, but the asymptotic time would remain the same.
     public static <T> Collection<T> symmetricDifference (Collection<T> collection1, Collection<T> collection2) {
+        // Null protection
+        collection1 = Optional.ofNullable(collection1).orElse(new LinkedList<>());
+        collection2 = Optional.ofNullable(collection2).orElse(new LinkedList<>());
+
         // Does 3 operations, each taking O(m + n) time
         // - O(m + n)
         Collection<T> output = difference(union(collection1, collection2), intersection(collection1, collection2));
